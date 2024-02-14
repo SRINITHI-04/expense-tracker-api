@@ -1,4 +1,5 @@
 const express = require('express')
+const cors=require('cors')
 const bodyParser = require('body-parser')
 const {ObjectId} = require('mongodb')     // object id to delete with id 
 // Importing required functions from dbConnection.cjs
@@ -13,9 +14,10 @@ connectToDb(function(error) {
         console.log('Could not establish connection...')
         console.log(error)
     } else { // if no error in establishing connection
-        app.listen(5500)
+        const port =process.env.PORT || 5500
+        app.listen(port)
         db = getDb()
-        console.log('Listening on port 8000...')
+        console.log(`listening on port ${port}....`)
     }
 })
 
